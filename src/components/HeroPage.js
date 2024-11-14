@@ -85,7 +85,7 @@ const Hero = () => {
       </div>
 
       {/* Mood Selector (Positioned Below Hero Image on Mobile) */}
-      <div className="absolute bottom-28 w-full flex flex-wrap justify-center items-center space-x-4 md:mt-0 z-10">
+      <div className="absolute bottom-12 w-full flex flex-wrap justify-center items-center space-x-4 md:mt-0 z-10">
         <p className="text-white text-xl">How are you feeling today?</p>
         <div className="flex flex-wrap justify-center space-x-4 mt-4">
           <button
@@ -135,7 +135,7 @@ const Hero = () => {
 
       {/* Pop-Up Widget */}
       {showPopup && (
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-30">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full relative">
             <FaTimes
               onClick={closePopup}
