@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowRight, FaTimes, FaSmile, FaSadTear, FaAngry, FaHeartbeat, FaBed, FaBatteryFull } from 'react-icons/fa';
+import { FaArrowRight, FaTimes, FaSmile, FaSadTear, FaAngry, FaBed, FaBatteryFull } from 'react-icons/fa';
 import HeroImage from '../assets/hero_img2.png'; // Ensure the path is correct
 
 const Hero = () => {
@@ -20,6 +20,7 @@ const Hero = () => {
 
   const handleMoodChange = (mood) => {
     setSelectedMood(mood);
+    console.log(selectedMood)
     switch (mood) {
       case 'happy':
         setBackgroundColor('bg-gradient-to-br from-yellow-400 to-orange-500');

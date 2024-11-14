@@ -9,7 +9,7 @@ import ChallengeWidget from './ChallengeWidget';
 const Challenges = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedChallenges, setSelectedChallenges] = useState([]);
-  const [challengesFromFirestore, setChallengesFromFirestore] = useState([]);
+  
   const [userChallenges, setUserChallenges] = useState([]); // To store challenges for the logged-in user
   const navigate = useNavigate(); // Initialize useNavigate hook
 
@@ -26,16 +26,17 @@ const Challenges = () => {
   const currentUser = auth.currentUser; // Current logged-in user
 
   // Fetch challenges from Firestore for all users (if needed)
-  const fetchChallenges = async () => {
-    try {
-      const q = query(collection(db, 'challenges'), orderBy('timestamp', 'desc'));
-      const querySnapshot = await getDocs(q);
-      const challengesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setChallengesFromFirestore(challengesData);
-    } catch (error) {
-      console.error('Error fetching challenges: ', error);
-    }
-  };
+  // const fetchChallenges = async () => {
+  //   try {
+  //     const q = query(collection(db, 'challenges'), orderBy('timestamp', 'desc'));
+  //     const querySnapshot = await getDocs(q);
+  //     const challengesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  //     setChallengesFromFirestore(challengesData);
+  //     console.log(challengesFromFirestore)
+  //   } catch (error) {
+  //     console.error('Error fetching challenges: ', error);
+  //   }
+  // };
 
   // Fetch challenges for the current logged-in user
   const fetchUserChallenges = async () => {
@@ -49,6 +50,7 @@ const Challenges = () => {
         const querySnapshot = await getDocs(q);
         const userChallengesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setUserChallenges(userChallengesData); // Set user-specific challenges
+        console.log(userChallenges)
       } catch (error) {
         console.error('Error fetching user challenges: ', error);
       }

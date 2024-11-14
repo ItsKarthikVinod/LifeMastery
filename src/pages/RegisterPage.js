@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { useAuth } from '../contexts/authContext'
 import { doCreateUserWithEmailAndPassword } from '../firebase/auth'
 
 const RegisterPage = () => {
 
-    const navigate = useNavigate()
+    
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
     const [isRegistering, setIsRegistering] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('') // eslint-disable-line
 
     const { userLoggedIn } = useAuth()
 

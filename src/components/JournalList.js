@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase'; // Assuming Firestore is initialized here
-import { collection, query, orderBy, onSnapshot, where } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot} from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 const JournalList = () => {
