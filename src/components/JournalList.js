@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase'; // Assuming Firestore is initialized here
-import { collection, query, orderBy, onSnapshot} from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 const JournalList = () => {
@@ -21,14 +21,20 @@ const JournalList = () => {
     return unsubscribe; // Cleanup on unmount
   }, []);
 
+  // Helper function to format timestamp to date string (YYYY-MM-DD)
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleDateString('en-CA'); // 'en-CA' will return in YYYY-MM-DD format
+  };
+
   // Filter entries by selected date
   const handleDateChange = (e) => {
     setSelectedDate(e.target.value);
 
     if (e.target.value) {
       const filtered = entries.filter((entry) => {
-        const entryDate = new Date(entry.createdAt.seconds * 1000).toLocaleDateString();
-        return entryDate === e.target.value;
+        const entryDate = formatDate(entry.createdAt); // Format the entry's createdAt date
+        return entryDate === e.target.value; // Compare to selected date
       });
       setFilteredEntries(filtered);
     } else {
@@ -62,7 +68,7 @@ const JournalList = () => {
             <div key={index} className="p-4 bg-white shadow-md rounded-md">
               <h3 className="text-xl font-medium">{entry.title}</h3>
               <p className="text-gray-600 mt-2">{entry.content}</p>
-              <p className="text-sm text-gray-500 mt-4">{new Date(entry.createdAt?.seconds * 1000).toLocaleString()}</p>
+              <p className="text-sm text-gray-500 mt-4">{formatDate(entry.createdAt)}</p>
             </div>
           ))
         )}
