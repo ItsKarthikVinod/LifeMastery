@@ -148,6 +148,12 @@ const GoalTracker = () => {
     }
   };
 
+  const calculateProgress = (subGoals) => {
+    if (subGoals.length === 0) return 0;
+    const completedSubGoals = subGoals.filter(subGoal => subGoal.completed).length;
+    return (completedSubGoals / subGoals.length) * 100;
+  };
+
   return (
     <div className="goal-tracker-container">
       <h2 className="text-2xl font-semibold mb-4">Your Goals</h2>
@@ -173,6 +179,17 @@ const GoalTracker = () => {
               <button onClick={() => deleteGoal(goal.id)} className="text-red-500">
                 <FaTrash />
               </button>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="mt-4">
+              <label className="block text-sm">Progress</label>
+              <progress 
+                value={calculateProgress(goal.subGoals)} 
+                max="100" 
+                className="w-full h-2 bg-gray-200 rounded"
+              />
+              <span className="text-sm ml-2">{Math.round(calculateProgress(goal.subGoals))}%</span>
             </div>
 
             {/* Add Sub-goal Button */}
